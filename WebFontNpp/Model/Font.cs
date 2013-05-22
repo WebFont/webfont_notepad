@@ -7,11 +7,9 @@ namespace WebFontNpp.Model
     [Serializable]
     public class Font
     {
-        public string Import { get; set; }
-        public string Name { get; set; }
-        public string Comments { get; set; }
-        public string PackUrl { get; set; }
-
-
+        public string import { get; set; }
+        public string name { get; set; }
+        public string comments { get; set; }
+        public string pack_url { get; set; }
     }
 }

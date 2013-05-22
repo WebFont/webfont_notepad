@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Unofficial.BindingListView</id>
+    <version>1.2.0.0</version>
+    <title>Unofficial.BindingListView</title>
+    <authors>Andrew Davey</authors>
+    <owners>Andrew Davey</owners>
+    <projectUrl>http://blw.sourceforge.net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The BindingListView .NET library provides a type-safe, sortable, filterable, data-bindable view of one or more lists of objects. It is the business objects equivalent of using a DataView on a DataTable in ADO.NET. If you have a list of objects to display on a Windows Forms UI (e.g. in a DataGridView) and want to allow your user to sort and filter, then this is the library to use! Unofficial package by Richard Dingwall.</description>
+    <releaseNotes />
+    <copyright>Copyright Andrew Davey 2006</copyright>
+    <language />
+    <tags>BindingListView WinForms ListView Grid DataGrid Unofficial</tags>
+  </metadata>
+</package>
