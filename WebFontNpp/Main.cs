@@ -33,7 +33,7 @@ namespace WebFontNpp
             someSetting = (Win32.GetPrivateProfileInt("SomeSection", "SomeKey", 0, iniFilePath) != 0);
 
             PluginBase.SetCommand(0, "MyMenuCommand", myMenuFunction, new ShortcutKey(false, false, false, Keys.None));
-            PluginBase.SetCommand(1, "MyDockableDialog", myDockableDialog); idMyDlg = 1;
+            PluginBase.SetCommand(1, "Fonts", myDockableDialog); idMyDlg = 1;
         }
         internal static void SetToolBarIcon()
         {
@@ -76,7 +76,7 @@ namespace WebFontNpp
 
                 NppTbData _nppTbData = new NppTbData();
                 _nppTbData.hClient = frmMyDlg.Handle;
-                _nppTbData.pszName = "My dockable dialog";
+                _nppTbData.pszName = "Fonts";
                 _nppTbData.dlgID = idMyDlg;
                 _nppTbData.uMask = NppTbMsg.DWS_DF_CONT_RIGHT | NppTbMsg.DWS_ICONTAB | NppTbMsg.DWS_ICONBAR;
                 _nppTbData.hIconTab = (uint)tbIcon.Handle;
