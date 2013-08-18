@@ -60,9 +60,9 @@ namespace WebFontNpp
 
             fontsBindingListView = new BindingListView<Font>(fonts);
 
-            fontsListBox.BeginUpdate();
+            //fontsListBox.BeginUpdate();
             fontsListBox.DataSource = fontsBindingListView;
-            fontsListBox.EndUpdate();
+            //fontsListBox.EndUpdate();
 
             fontsListBox.Enabled = true;
             filterTextBox.Enabled = true;
@@ -72,14 +72,14 @@ namespace WebFontNpp
 
         private void fontsListBox_DoubleClick(object sender, EventArgs e)
         {
-            var selectedFont = fontsListBox.SelectedItem as Font;
+            var selectedFont = fontsListBox.SelectedItem as ObjectView<Font>;
             if (selectedFont != null)
             {
                 IntPtr curScintilla = PluginBase.GetCurrentScintilla();
 
                 var insertTextBuilder = new StringBuilder();
-                insertTextBuilder.AppendLine(selectedFont.import);
-                insertTextBuilder.AppendLine(selectedFont.comments);
+                insertTextBuilder.AppendLine(selectedFont.Object.import);
+                insertTextBuilder.AppendLine(selectedFont.Object.comments);
 
                 Win32.SendMessage(curScintilla, SciMsg.SCI_REPLACESEL, 0, insertTextBuilder);
             }
