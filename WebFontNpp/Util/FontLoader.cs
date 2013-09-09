@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
+using Ionic.Zip;
 using WebFontNpp.Model;
 using fastJSON;
 
@@ -16,7 +18,23 @@ namespace WebFontNpp.Util
             var fontsJson = new WebClient().DownloadString(FONTS_URL);
             var fonts = JSON.Instance.ToObject<List<Font>>(fontsJson);
             return fonts;
-        } 
+        }
 
+        public static void UnpackFontToFolder(string selectedFolder, Font font)
+        {
+            var fontUrl = font.pack_url;
+            var zipFileName = Path.GetTempFileName();
+            new WebClient().DownloadFile(fontUrl, zipFileName);
+
+            using (var zipFile = ZipFile.Read(zipFileName))
+            {
+                foreach (var zipEntry in zipFile.Entries)
+                {
+                    zipEntry.Extract(selectedFolder, ExtractExistingFileAction.OverwriteSilently);
+                }
+            }
+
+            File.Delete(zipFileName);
+        }
     }
 }
