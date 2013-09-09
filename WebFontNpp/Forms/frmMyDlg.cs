@@ -109,7 +109,6 @@ namespace WebFontNpp
 
                                 var insertTextBuilder = new StringBuilder();
                                 insertTextBuilder.AppendLine(selectedFont.Object.import.Replace(COMMON_IMPORT_PATH, fontRelativePath));
-                                insertTextBuilder.AppendLine(selectedFont.Object.comments);
 
                                 Win32.SendMessage(curScintilla, SciMsg.SCI_REPLACESEL, 0, insertTextBuilder);
                             }
