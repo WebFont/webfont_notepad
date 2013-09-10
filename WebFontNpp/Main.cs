@@ -12,7 +12,7 @@ namespace WebFontNpp
     class Main
     {
         #region " Fields "
-        internal const string PluginName = "WebFontNpp";
+        internal const string PluginName = "WebFont";
         static string iniFilePath = null;
         static bool someSetting = false;
         static frmMyDlg importFontDialog = null;
