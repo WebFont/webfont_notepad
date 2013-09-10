@@ -15,9 +15,23 @@ namespace WebFontNpp.Util
 
         public static List<Font> LoadFonts()
         {
-            var fontsJson = new WebClient().DownloadString(FONTS_URL);
-            var fonts = JSON.Instance.ToObject<List<Font>>(fontsJson);
-            return fonts;
+            try
+            {
+                var fontsJson = new WebClient().DownloadString(FONTS_URL);
+                var fonts = JSON.Instance.ToObject<List<Font>>(fontsJson);
+
+                Main.FontsListCache = fontsJson;
+
+                return fonts;
+            }
+            catch (WebException)
+            {
+            }
+
+            var cachedJson = Main.FontsListCache;
+            var cachedFonts = JSON.Instance.ToObject<List<Font>>(cachedJson);
+            return cachedFonts;
+
         }
 
         public static void UnpackFontToFolder(string selectedFolder, Font font)

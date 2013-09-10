@@ -19,10 +19,37 @@ namespace WebFontNpp
         static frmMyDlg downloadFontDialog = null;
         static int idImportDlg = -1;
         static int idDownloadDlg = -1;
-        static Bitmap tbBmp = Properties.Resources.star;
-        static Bitmap tbBmp_tbTab = Properties.Resources.star_bmp;
+        static Bitmap tbBmp = Properties.Resources.npp16;
+        static Bitmap tbBmp_tbTab = Properties.Resources.npp16;
         static Icon tbIcon = null;
         #endregion
+
+        internal static string FontsListCache
+        {
+            get
+            {
+                var fileName = GetCacheFileName();
+                if (File.Exists(fileName))
+                {
+                    return File.ReadAllText(fileName);
+                }
+
+                return "[]";
+            }
+
+            set
+            {
+                var fileName = GetCacheFileName();
+                File.WriteAllText(fileName, value);
+            }
+        }
+
+        private static string GetCacheFileName()
+        {
+            var cacheFileName = PluginName + "_fontCache.dat";
+            var cacheFullPath = Path.Combine(Path.GetTempPath(), cacheFileName);
+            return cacheFullPath;
+        }
 
         #region " StartUp/CleanUp "
         internal static void CommandMenuInit()
@@ -54,10 +81,6 @@ namespace WebFontNpp
         #endregion
 
         #region " Menu functions "
-//        internal static void myMenuFunction()
-//        {
-//            MessageBox.Show("Hello N++!");
-//        }
         internal static void showImportDialog()
         {
             if (importFontDialog == null)
@@ -69,11 +92,12 @@ namespace WebFontNpp
                     Graphics g = Graphics.FromImage(newBmp);
                     ColorMap[] colorMap = new ColorMap[1];
                     colorMap[0] = new ColorMap();
-                    colorMap[0].OldColor = Color.Fuchsia;
+                    colorMap[0].OldColor = Color.FromArgb(0, Color.White);
                     colorMap[0].NewColor = Color.FromKnownColor(KnownColor.ButtonFace);
                     ImageAttributes attr = new ImageAttributes();
                     attr.SetRemapTable(colorMap);
                     g.DrawImage(tbBmp_tbTab, new Rectangle(0, 0, 16, 16), 0, 0, 16, 16, GraphicsUnit.Pixel, attr);
+
                     tbIcon = Icon.FromHandle(newBmp.GetHicon());
                 }
 
@@ -107,11 +131,12 @@ namespace WebFontNpp
                     Graphics g = Graphics.FromImage(newBmp);
                     ColorMap[] colorMap = new ColorMap[1];
                     colorMap[0] = new ColorMap();
-                    colorMap[0].OldColor = Color.Fuchsia;
+                    colorMap[0].OldColor = Color.FromArgb(0, Color.White);
                     colorMap[0].NewColor = Color.FromKnownColor(KnownColor.ButtonFace);
                     ImageAttributes attr = new ImageAttributes();
                     attr.SetRemapTable(colorMap);
                     g.DrawImage(tbBmp_tbTab, new Rectangle(0, 0, 16, 16), 0, 0, 16, 16, GraphicsUnit.Pixel, attr);
+
                     tbIcon = Icon.FromHandle(newBmp.GetHicon());
                 }
 
